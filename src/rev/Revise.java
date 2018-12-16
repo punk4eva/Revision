@@ -22,7 +22,7 @@ public class Revise{
     
     protected static Scanner scan = new Scanner(System.in);
     protected static MessageLog log;
-    protected static final String filePath = "H:\\rev\\";
+    protected static final String filePath = "H:\\rev2\\";
     
     protected static enum Subject{
         BIOLOGY, CHEMISTRY, PHYSICS, ENGLISH, MATHS, HISTORY, GEOLOGY, 
@@ -31,7 +31,7 @@ public class Revise{
     
     
     protected static String next(){
-        return scan.nextLine();
+        return new Scanner(System.in).nextLine();
     }
     
     protected static void add(){
@@ -135,32 +135,11 @@ public class Revise{
     
     protected static void setLog(String l){
         switch(Subject.valueOf(l)){
-            case BIOLOGY:
-                log = getLog(new File(filePath+"biology.ser"));
-                break;
-            case CHEMISTRY:
-                log = getLog(new File(filePath+"chemistry.ser"));
-                break;
             case PHYSICS:
                 log = getLog(new File(filePath+"physics.ser"));
                 break;
-            case ENGLISH:
-                log = getLog(new File(filePath+"english.ser"));
-                break;
             case MATHS:
                 log = getLog(new File(filePath+"maths.ser"));
-                break;
-            case HISTORY:
-                log = getLog(new File(filePath+"history.ser"));
-                break;
-            case GEOLOGY:
-                log = getLog(new File(filePath+"geology.ser"));
-                break;
-            case ECONOMICS:
-                log = getLog(new File(filePath+"economics.ser"));
-                break;
-            case GERMAN:
-                log = getLog(new File(filePath+"german.ser"));
                 break;
             case COMPUTING:
                 log = getLog(new File(filePath+"computing.ser"));
@@ -172,7 +151,7 @@ public class Revise{
     }
     
     protected static boolean filesExist(){
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(filePath+"biology.ser")))){
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(new File(filePath+"physics.ser")))){
             MessageLog l = (MessageLog) ois.readObject();
         }catch(IOException e){
             System.out.println("Files don't exist.");
@@ -185,15 +164,8 @@ public class Revise{
     }
     
     protected static void endAll(){
-        getLog(new File(filePath+"biology.ser")).end();
-        getLog(new File(filePath+"chemistry.ser")).end();
         getLog(new File(filePath+"physics.ser")).end();
-        getLog(new File(filePath+"english.ser")).end();
         getLog(new File(filePath+"maths.ser")).end();
-        getLog(new File(filePath+"geology.ser")).end();
-        getLog(new File(filePath+"economics.ser")).end();
-        getLog(new File(filePath+"german.ser")).end();
-        getLog(new File(filePath+"history.ser")).end();
         getLog(new File(filePath+"computing.ser")).end();
         getLog(new File(filePath+"mistakes.ser")).end();
     }

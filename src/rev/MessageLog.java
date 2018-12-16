@@ -139,7 +139,7 @@ public class MessageLog implements Serializable{
             edit.printout();
             System.out.println("\nWhat section do you want to edit?");
             String in = Revise.next().toLowerCase();
-            boolean edited = true;
+            boolean edited = true, deleted = false;
             switch(in){
                 case "topic":
                     System.out.println("Type the new topic...");
@@ -153,9 +153,15 @@ public class MessageLog implements Serializable{
                     System.out.println("Type the new back...");
                     edit.back = Revise.next();
                     break;
+                case "delete": 
+                    deleted = true;
+                    break;
                 default: edited = false;
             }
-            if(edited){
+            if(deleted){
+                System.err.println("Delete successful");
+                iter.remove();
+            }else if(edited){
                 System.err.println("Edit successful");
                 iter.remove();
                 tempList.add(edit);
